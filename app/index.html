@@ -33,6 +33,7 @@
                     <!-- Insert fallback content here -->
                 </canvas>
             </div>
+            
             <div class="col-xs-6">
                 <h3>Brightness / Contrast</h3>
                 <div class="row">
@@ -40,10 +41,10 @@
                         Brighness&nbsp;-/+
                     </div>
                     <div class="col-xs-8">
-                        <input type="range" step="1" min="-255" max="255">
-                    </div>
+                        <input type="range" ng-model="brightness" ng-change="applyFilters()" step="1" min="-255" max="255"> </div>
                     <div class="col-xs-1">
-                        <input type="text" size="4">
+                        <input type="text" size="4" ng-model="brightness" ng-change="applyFilters()" >
+                   
                     </div>
                 </div>
 
@@ -52,10 +53,10 @@
                         Contrast&nbsp;-/+
                     </div>
                     <div class="col-xs-8">
-                        <input type="range" step="0.1" min="0" max="10">
+                        <input type="range" step="0.1" min="0.0" max="10" ng-model="contrast" ng-change="applyFilters()">
                     </div>
                     <div class="col-xs-1">
-                        <input type="text" size="4">
+                        <input type="text" size="4" ng-model="contrast" ng-change="applyFilters()">
                     </div>
                 </div>
                 <div class="row">
@@ -63,21 +64,21 @@
                         Autocontrast on/off
                     </div>
                     <div class="col-xs-8">
-                        <input type="checkbox">
+                        <input type="checkbox" ng-model="autocontrast">
                     </div>
                 </div>
 
-                <h3>Color filter <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></h3>
+                <h3>Color filter <span ng-attr-style="background-color: rgb({{color.red}}, {{color.green}},{{color.blue}}); border: 1px solid #333;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></h3>
 
                 <div class="row">
                     <div class="col-xs-1">
                         R
                     </div>
                     <div class="col-xs-10">
-                        <input type="range" min="0" max="255">
+                        <input type="range" min="0" max="255" ng-model="color.red" ng-change="red()">
                     </div>
                     <div class="col-xs-1">
-                        <input type="text" size="4">
+                        <input type="text" size="4" ng-model="color.red">
                     </div>
                 </div>
 
@@ -86,10 +87,10 @@
                         G
                     </div>
                     <div class="col-xs-10">
-                        <input type="range" step="1" min="0" max="255">
+                        <input type="range" step="1" min="0" max="255" ng-model="color.green" ng-change="green()">
                     </div>
                     <div class="col-xs-1">
-                        <input type="text" size="4">
+                        <input type="text" size="4" ng-model="color.green">
                     </div>
                 </div>
 
@@ -98,10 +99,10 @@
                         B
                     </div>
                     <div class="col-xs-10">
-                        <input type="range" step="1" min="0" max="255">
+                        <input type="range" step="1" min="0" max="255" ng-model="color.blue" ng-change="blue()">
                     </div>
                     <div class="col-xs-1">
-                        <input type="text" size="4">
+                        <input type="text" size="4" ng-model="color.blue">
                     </div>
                 </div>
 
@@ -111,10 +112,10 @@
                         Strength
                     </div>
                     <div class="col-xs-9">
-                        <input type="range" step="1" min="1" max="100">
+                        <input type="range" step="1" min="1" max="100" ng-model="strength" ng-change="applyFilters()">
                     </div>
                     <div class="col-xs-1">
-                        <input type="text" size="4">
+                        <input type="text" size="4" ng-model="strength" ng-change="applyFilters()">
                     </div>
                 </div>
 
@@ -123,13 +124,13 @@
                         Vignette on/off
                     </div>
                     <div class="col-xs-9">
-                        <input type="checkbox">
+                        <input type="checkbox" ng-model="vignette" ng-change="applyFilters()">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-xs-12 text-center">
-                        <a class="btn btn-default" download="edited">Save image</a>
+                        <a class="btn btn-default" download="edited" ng-href="{{ url }}" ng-click="saveImage()">Save image</a>
                     </div>
                 </div>
             </div>
